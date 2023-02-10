@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="Log in"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/student"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:layout_below="@id/login"
+        android:background="@drawable/my_rounded_bg"
+        android:layout_centerHorizontal="true"
+        android:drawableTop="@drawable/student"
+        android:text="Student"
+        android:textColor="@color/white"
+        android:textSize="10pt" />
+
+    <Button
+        android:id="@+id/profesor"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/student"
+        android:layout_marginTop="77dp"
+        android:background="@drawable/my_rounded_bg"
+        android:drawableTop="@drawable/professor"
+        android:gravity="center"
+        android:text="Profesor"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="10pt"
+        />
+
+
+
+</RelativeLayout>

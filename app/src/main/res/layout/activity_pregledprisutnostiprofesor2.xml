@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="Pregled prisutnosti"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ADR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oblo"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:padding="20dp"
+        android:text="Arhitektura digitalnih računala                               0/15"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/OS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ADR"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oblo"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:text="Operacijski sustavi                                                  0/15"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/ugradbeni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/OS"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oblo"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:text="Ugradbeni računalni sustavi                                   0/15"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/elektronika"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ugradbeni"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oblo"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:text="Elektornika                                                               0/15"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/ES"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/elektronika"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oblo"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:text="Elektornički sklopovi                                               0/15"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/RVP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ES"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oblo"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:gravity="center_vertical"
+        android:text="Računarstvo visokih performanci                         0/15"
+        android:textColor="@color/black" />
+
+
+
+</RelativeLayout>
