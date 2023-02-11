@@ -18,10 +18,7 @@
         android:theme="@style/Theme.Projekt"
         tools:targetApi="31">
         <activity
-            android:name=".httpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
+            android:name=".httpLogger"
             android:exported="false" />
         <activity
             android:name=".HTTP2"

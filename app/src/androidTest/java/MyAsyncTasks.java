@@ -3,8 +3,6 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.projekt.httpActivity;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

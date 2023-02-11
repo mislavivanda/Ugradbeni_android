@@ -14,7 +14,7 @@ public class StudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-        button = (Button) findViewById(R.id.prisutnost);
+        button = (Button) findViewById(R.id.prisutnostProfesorView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
