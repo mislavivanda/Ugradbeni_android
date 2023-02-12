@@ -8,243 +8,27 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/prisutnostTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="Evidencija"
+        android:text="Pregled prisutnosti"
         android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_below="@id/login"
-        android:layout_width="fill_parent"
+    <ListView
+        android:id="@+id/prisutnostStudentView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/oblo"
-        android:drawablePadding="20dp"
-        android:weightSum="100">
-
-        <TextView
-            android:id="@+id/SBM"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Sigurnost bežićnih mreža"
-            android:textColor="@color/black"
-            android:gravity="left"
-            android:layout_weight="40"
-
-
-            />
-
-
-        <TextView
-            android:id="@+id/broj1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="60"
-            android:textColor="@color/black"
-            android:gravity="right"
-            android:text="0/15"
-
-
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/oblo"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-
-        <TextView
-            android:id="@+id/MS"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:gravity="left"
-            android:text="Multimedijski sustavi"
-            android:textColor="@color/black"
-
-
-            />
-
-        <TextView
-            android:id="@+id/broj2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:gravity="right"
-            android:textColor="@color/black"
-            android:text="0/15"
-
-
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="135dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/oblo"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-
-        <TextView
-            android:id="@+id/URS"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="40"
-            android:gravity="left"
-            android:text="Ugradbeni računalni sustavi"
-            android:textColor="@color/black"
-
-
-            />
-
-        <TextView
-            android:id="@+id/broj3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="60"
-            android:gravity="right"
-            android:textColor="@color/black"
-            android:text="0/15"
-
-
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/oblo"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-
-        <TextView
-            android:id="@+id/PP"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:gravity="left"
-            android:text="Paralelno programiranje"
-            android:textColor="@color/black"
-
-
-            />
-
-        <TextView
-            android:id="@+id/broj4"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:gravity="right"
-            android:textColor="@color/black"
-            android:text="0/15"
-
-
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="265dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/oblo"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-
-        <TextView
-            android:id="@+id/GRS"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:gravity="left"
-            android:text="Grid računalni sustavi"
-            android:textColor="@color/black"
-
-
-            />
-
-        <TextView
-            android:id="@+id/broj5"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:gravity="right"
-            android:textColor="@color/black"
-            android:text="0/15"
-
-
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="330dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/oblo"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-
-        <TextView
-            android:id="@+id/PIS"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="40"
-            android:gravity="left"
-            android:text="Poslovni informacijski sustavi"
-            android:textColor="@color/black"
-
-
-            />
-
-        <TextView
-            android:id="@+id/broj6"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="60"
-            android:gravity="right"
-            android:textColor="@color/black"
-            android:text="0/15"
-
-
-            />
-    </LinearLayout>
-
+        android:divider="@android:color/transparent"
+        android:dividerHeight="20.0sp"
+        android:paddingLeft="10.0sp"
+        android:paddingRight="10.0sp"
+        android:layout_below="@id/prisutnostTitle">
+    </ListView>
 
 </RelativeLayout>

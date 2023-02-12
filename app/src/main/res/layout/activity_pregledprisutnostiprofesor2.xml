@@ -24,7 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10.0sp"
+        android:dividerHeight="20.0sp"
+        android:paddingLeft="10.0sp"
+        android:paddingRight="10.0sp"
         android:layout_below="@id/prisutnostTitle">
     </ListView>
 </RelativeLayout>

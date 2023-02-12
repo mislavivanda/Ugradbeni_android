@@ -14,23 +14,23 @@ public class StudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-        button = (Button) findViewById(R.id.prisutnostProfesorView);
+        button = (Button) findViewById(R.id.pregled);
         button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openwifiActivity();
-            }
-        });
-        button1 = (Button) findViewById(R.id.pregled);
-        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPregledActivity();
             }
         });
+        button1 = (Button) findViewById(R.id.evidencija);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openStudentEvidence();
+            }
+        });
     }
-    public void openwifiActivity(){
-        Intent intent = new Intent(this,WifiActivity.class);
+    public void openStudentEvidence(){
+        Intent intent = new Intent(this,StudentTeachingSession.class);
         startActivity(intent);
     }
     public void openPregledActivity(){

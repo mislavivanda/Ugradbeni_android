@@ -33,9 +33,10 @@ public class prisutnostViewAdapter  extends ArrayAdapter<PrisutnostView> {
         // get the position of the view from the ArrayAdapter
         PrisutnostView currentPrisutnostPosition = getItem(position);
 
-        TextView textView = currentItemView.findViewById(R.id.prisutnostView);
-        textView.setText(currentPrisutnostPosition.getName() + "                                        " + String.valueOf(currentPrisutnostPosition.getScore()) + "/" + String.valueOf(currentPrisutnostPosition.getTotal()));
-
+        TextView subjectNameTextView = currentItemView.findViewById(R.id.subjectName);
+        TextView statsTextView = currentItemView.findViewById(R.id.stats);
+        subjectNameTextView.setText(currentPrisutnostPosition.getName());
+        statsTextView.setText(String.valueOf(currentPrisutnostPosition.getScore()) + "/" + String.valueOf(currentPrisutnostPosition.getTotal()));
         // then return the recyclable view
         return currentItemView;
     }

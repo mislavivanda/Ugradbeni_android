@@ -15,12 +15,11 @@ public class ProfesorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profesor);
-        button = (Button) findViewById(R.id.prisutnostProfesorView);
+        button = (Button) findViewById(R.id.evidencija);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openwifiActivity();
-                return;
+                openProfesorEvidence();
             }
         });
         button1 = (Button) findViewById(R.id.pregled);
@@ -31,10 +30,10 @@ public class ProfesorActivity extends AppCompatActivity {
             }
         });
     }
-    /*public void openwifiActivity(){
-        Intent intent = new Intent(this, httpLogger.class);
+    public void openProfesorEvidence(){
+        Intent intent = new Intent(this, ProfesorTeachingSession.class);
         startActivity(intent);
-    }*/
+    }
     public void openPregledActivity(){
         Intent intent = new Intent(this,PregledprisutnostiprofesorActivity2.class);
         startActivity(intent);

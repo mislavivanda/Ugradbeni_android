@@ -22,14 +22,14 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/prisutnostProfesorView"
+        android:id="@+id/evidencija"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:gravity="center"
         android:layout_below="@id/prof"
         android:background="@drawable/my_rounded_bg"
         android:layout_centerHorizontal="true"
-        android:text="Prisutnost"
+        android:text="Evidencija"
         android:textColor="@color/white"
         android:textSize="10pt" />
 
@@ -37,7 +37,7 @@
         android:id="@+id/pregled"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@id/prisutnostProfesorView"
+        android:layout_below="@id/evidencija"
         android:layout_marginTop="77dp"
         android:background="@drawable/my_rounded_bg"
         android:gravity="center"
