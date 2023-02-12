@@ -18,7 +18,7 @@ android:weightSum="100">
     android:id="@+id/subjectName"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="40"
+    android:layout_weight="20"
     android:gravity="left"
     android:textColor="@color/black"
     />
@@ -27,7 +27,7 @@ android:weightSum="100">
     android:id="@+id/stats"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="60"
+    android:layout_weight="80"
     android:gravity="right"
     android:textColor="@color/black"
     />

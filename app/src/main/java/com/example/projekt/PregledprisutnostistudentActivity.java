@@ -10,6 +10,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -28,27 +29,22 @@ public class PregledprisutnostistudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pregledprisutnostistudent);
         mQueue = Volley.newRequestQueue(this);
-        //getTeachingStats();
-        final ArrayList<PrisutnostView> arrayList = new ArrayList<PrisutnostView>();
-        arrayList.add(new PrisutnostView("Ugradbeni računalni sustavi", 3, 13));
-        arrayList.add(new PrisutnostView("Ugradbeni računalni sustavi", 3, 13));
-        renderTeachingStats(arrayList);
+        getTeachingStats();
     }
 
     private void getTeachingStats () {
         Map<String, String> params = new HashMap();
         params.put("studentID", "451-2021");
         JSONObject objParams = new JSONObject(params);
-        JSONArray parameters = new JSONArray();
-        parameters.put(objParams);
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, parameters,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, objParams,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         try {
+                            JSONArray jsonArray = response.getJSONArray("data");
                             final ArrayList<PrisutnostView> arrayList = new ArrayList<PrisutnostView>();
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject data = response.getJSONObject(i);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject data = jsonArray.getJSONObject(i);
                                 String name = data.getString("name");
                                 int score = data.getInt("score");
                                 int total =data.getInt("total");

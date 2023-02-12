@@ -37,16 +37,15 @@ public class PregledprisutnostiprofesorActivity2 extends AppCompatActivity {
         Map<String, String> params = new HashMap();
         params.put("profesorID", "12345");
         JSONObject objParams = new JSONObject(params);
-        JSONArray parameters = new JSONArray();
-        parameters.put(objParams);
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, parameters,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, objParams,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         try {
+                            JSONArray jsonArray = response.getJSONArray("data");
                             final ArrayList<PrisutnostView> arrayList = new ArrayList<PrisutnostView>();
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject data = response.getJSONObject(i);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject data = jsonArray.getJSONObject(i);
                                 String name = data.getString("name");
                                 int score = data.getInt("score");
                                 int total =data.getInt("total");
