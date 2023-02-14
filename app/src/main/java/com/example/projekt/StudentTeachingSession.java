@@ -1,6 +1,8 @@
 package com.example.projekt;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.LinkAddress;
 import android.net.LinkProperties;
@@ -10,11 +12,17 @@ import android.net.NetworkRequest;
 import android.net.NetworkSpecifier;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiNetworkSpecifier;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,6 +44,8 @@ public class StudentTeachingSession extends AppCompatActivity {
     private ConnectivityManager mConnectivityManager;
     private ConnectivityManager.NetworkCallback mNetworkCallback;
     private RequestQueue mQueue;
+    private ActivityResultLauncher<Intent> someActivityResultLauncher;
+    private WifiManager wifi;
     private String url = "https://ugradbeniserver-mislaviva.pitunnel.com/api/teachingsession/student";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +53,33 @@ public class StudentTeachingSession extends AppCompatActivity {
         setContentView(R.layout.student_teaching_session);
         mQueue = Volley.newRequestQueue(this);
         evidenceButton = findViewById(R.id.studentSession);
+        someActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if(wifi.isWifiEnabled()) {
+                            connect("26FF66", "qa9aq7hqnj");
+                        }
+                    }
+                });
         evidenceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connect("Redmi Note 10 5G", "mislav1108");
+                Log.i("wifistatus", String.valueOf(wifi.isWifiEnabled()));
+                if (!wifi.isWifiEnabled()){
+                    Intent intent = new Intent(Settings.Panel.ACTION_WIFI);
+                    someActivityResultLauncher.launch(intent);
+                } else connect("26FF66", "qa9aq7hqnj");
             }
         });
+        wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
         mConnectivityManager = (ConnectivityManager) this.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         mNetworkCallback = new ConnectivityManager.NetworkCallback(){
             @Override
             public void onAvailable(@NonNull Network network) {
                 super.onAvailable(network);
+                mConnectivityManager.bindProcessToNetwork(network);
                 //phone is connected to wifi network
                 LinkProperties info = mConnectivityManager.getLinkProperties(network);
                 //You need to filter returned results because there will be multiple ipV6 addresses and only one ipV4 address
@@ -123,6 +149,7 @@ public class StudentTeachingSession extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             networkRequest = new NetworkRequest.Builder()
                     .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                    //.addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                     .setNetworkSpecifier(networkSpecifier)
                     .build();
         }
