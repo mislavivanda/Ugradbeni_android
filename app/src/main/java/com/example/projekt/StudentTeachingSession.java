@@ -10,6 +10,7 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.net.NetworkSpecifier;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiNetworkSpecifier;
 import android.os.Build;
@@ -35,6 +36,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.net.Inet6Address;
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +50,7 @@ public class StudentTeachingSession extends AppCompatActivity {
     private ActivityResultLauncher<Intent> someActivityResultLauncher;
     private WifiManager wifi;
     private String url = "https://ugradbeniserver-mislaviva.pitunnel.com/api/teachingsession/student";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,19 +91,32 @@ public class StudentTeachingSession extends AppCompatActivity {
                 //Nadi prvu koja ima .
                 List<LinkAddress> ipAdresses = info.getLinkAddresses();
                 String ipAdress=".";
+                LinkAddress ipv6Adress = null;
                 for(int i=0; i<ipAdresses.size(); i++) {
+                    Log.i("Ipadress", ipAdresses.get(i).toString());
                     if(ipAdresses.get(i).toString().contains(".")) {
                         ipAdress=ipAdresses.get(i).toString();
                         String[] adressParts = ipAdress.split("/");
                         ipAdress=adressParts[0];
                         break;
+                    } else {
+                        LinkAddress ipv6AdressTemp = ipAdresses.get(i);
+                        Inet6Address ipv6Type = (Inet6Address)ipv6AdressTemp.getAddress();
+                        final byte[] ipv6Bytes = ipv6Type.getAddress();
+                        if((ipv6Bytes.length == 16) &&
+                                (ipv6Bytes[0] == (byte) 0xfe) &&
+                                (ipv6Bytes[1] == (byte) 0x80)) {
+                            ipv6Adress = ipv6AdressTemp;
+                        }
                     }
                 }
-                Log.i("wifimac", ipAdress);
-                //nije moguce dohvatit MAC na Android 11
+                Log.i("Ipv6 adress", ipv6Adress.toString());
+                String macAdress = getMacAddressFromIpv6(ipv6Adress);
+                Log.i("ipadress", ipAdress);
+                Log.i("MACadress", macAdress);
                 Map<String, String> params = new HashMap();
                 params.put("roomName", "B420");
-                params.put("macAddress", "02:00:00:00:00:00");
+                params.put("macAddress", macAdress);
                 params.put("ipAddress", ipAdress);
                 params.put("studentID", "451-2021");
                 JSONObject objParams = new JSONObject(params);
@@ -136,6 +153,51 @@ public class StudentTeachingSession extends AppCompatActivity {
                 //user cancelled wifi connection
             }
         };
+    }
+    private static String getMacAddressFromIpv6(final LinkAddress ipv6)
+    {
+        byte[] eui48mac = null;
+        String macAdressString = "";
+        Log.i("Ipv6", ipv6.toString());
+        if (ipv6 != null) {
+            Log.i("macusao", "1");
+            /*
+             * Make sure that this is an fe80::/64 link-local address.
+             */
+            Inet6Address ipv6Type = (Inet6Address)ipv6.getAddress();
+            final byte[] ipv6Bytes = ipv6Type.getAddress();
+            Log.i("ipv6bytes", Integer.toString(ipv6Bytes.length));
+            Log.i("cond1", Boolean.toString(ipv6Bytes[0] == (byte) 0xfe));
+            Log.i("cond2", Boolean.toString(ipv6Bytes[1] == (byte) 0x80));
+            Log.i("cond3", Boolean.toString(ipv6Bytes[11] == (byte) 0xff));
+            Log.i("cond4", Boolean.toString(ipv6Bytes[12] == (byte) 0xfe));
+            //ako imamo takvu ip adresu onda je moguce izvuci mac iz nje
+            if ((ipv6Bytes != null) &&
+                    (ipv6Bytes.length == 16) &&
+                    (ipv6Bytes[0] == (byte) 0xfe) &&
+                    (ipv6Bytes[1] == (byte) 0x80) && (ipv6Bytes[11] == (byte) 0xff) &&
+                    (ipv6Bytes[12] == (byte) 0xfe)) {
+                /*
+                 * Allocate a byte array for storing the EUI-48 MAC address, then fill it
+                 * from the appropriate bytes of the IPv6 address. Invert the 7th bit
+                 * of the first byte and discard the "ff:fe" portion of the modified
+                 * EUI-64 MAC address.
+                 */
+                eui48mac = new byte[6];
+                eui48mac[0] = (byte) (ipv6Bytes[8] ^ 0x2);
+                eui48mac[1] = ipv6Bytes[9];
+                eui48mac[2] = ipv6Bytes[10];
+                eui48mac[3] = ipv6Bytes[13];
+                eui48mac[4] = ipv6Bytes[14];
+                eui48mac[5] = ipv6Bytes[15];
+                Log.i("macusao", "2");
+            } else return "02:00:00:00:00:00";
+        }
+        for(int i=0; i< eui48mac.length ; i++) {
+            macAdressString += String.format("%02x",eui48mac[i]) + ":";
+        }
+        macAdressString = macAdressString.substring(0, macAdressString.length() - 1);
+        return macAdressString;
     }
     public void connect(String ssid, String password) {
         NetworkSpecifier networkSpecifier  = null;
