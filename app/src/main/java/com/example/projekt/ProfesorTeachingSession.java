@@ -65,10 +65,9 @@ public class ProfesorTeachingSession extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LoadPreferences();
-        setContentView(R.layout.profesor_teaching_session);
+        setContentView(R.layout.activity_session);
         mQueue = Volley.newRequestQueue(this);
-        evidenceButton = findViewById(R.id.profesorSession);
-        Log.i("sesssion", String.valueOf(sessionActive));
+        evidenceButton = findViewById(R.id.actionButton);
         if(!sessionActive) {
             evidenceButton.setText("Kreiraj sesiju");
         } else evidenceButton.setText("Zatvori sesiju");

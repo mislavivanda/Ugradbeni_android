@@ -50,9 +50,10 @@ public class StudentTeachingSession extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.student_teaching_session);
+        setContentView(R.layout.activity_session);
         mQueue = Volley.newRequestQueue(this);
-        evidenceButton = findViewById(R.id.studentSession);
+        evidenceButton = findViewById(R.id.actionButton);
+        evidenceButton.setText("Registriraj se");
         someActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
